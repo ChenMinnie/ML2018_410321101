@@ -72,5 +72,6 @@
 >#### 1. Preprocessing Character Images :
 >##### 一開始要下載圖片時，無法讀取圖片檔的情形。遇到 HTTP Error 500,後來直接下載檔案，將檔案放入資料夾解決問題。
 >#### 2. Reducing Dimension
->##### 一直遇到Memory Error 。查資料發現TruncatedSVD方法不會造成Memory Error。至於PCA，PCA(n_components= 30,copy = False)，n_components不能太小，且 copy = False 可解決。n_components 愈小 Accuracy Of Classifier 愈不佳。
+>##### 一直遇到Memory Error 。查資料發現TruncatedSVD方法不會造成Memory Error。至於PCA，PCA(n_components= 30,copy = False)，n_components不能太小，且 copy = False 可解決。n_components 愈小 Accuracy Of Classifier 愈不佳，但並不是愈高愈好，到30左右效果和後面差不多。
+
 
