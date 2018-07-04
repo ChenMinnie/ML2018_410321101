@@ -57,11 +57,20 @@
 
 
 ### Discussions
->#### 
->#### 
->#### 
->
+
+#### Accuracy Of Classifier
+|Classifier \ Reducing Dimension| PCA |  PCA + LDA | TruncatedSVD |
+|:-----------------------------:|:---------:|:--------:|:--------:|
+|           Logistic            | 0.8766457 | 0.876743 | 0.876971 |
+|         Decision Tree         | 0.8480000 | 0.847943 | 0.845886 |
+|             SVC               | 0.9836000 | 0.983657 | 0.983200 |
+|             MLP (取20筆)      | 0.976343  | 0.976229 | 0.975486 |
+>##### 1. Reducing Dimension 三種方法整體效果 : PCA + LDA > PCA > TruncatedSVD
+>##### 2. Classifier 四種方法整體效果 : SVC > MLP > Logistic > Decision Tree
+
 ### What I Have Learned
->#### 
->#### 
+>#### 1. Preprocessing Character Images :
+>##### 一開始要下載圖片時，無法讀取圖片檔的情形。遇到 HTTP Error 500,後來直接下載檔案，將檔案放入資料夾解決問題。
+>#### 2. Reducing Dimension
+>##### 一直遇到Memory Error 。查資料發現TruncatedSVD方法不會造成Memory Error。至於PCA，PCA(n_components= 30,copy = False)，n_components不能太小，且 copy = False 可解決。n_components 愈小 Accuracy Of Classifier 愈不佳。
 
