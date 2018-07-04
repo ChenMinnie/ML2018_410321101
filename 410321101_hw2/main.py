@@ -16,15 +16,18 @@ from sklearn.linear_model import LogisticRegression
 from sklearn import decomposition
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.metrics import classification_report
+
+
 
 mnist = fetch_mldata('MNIST original') # Downloading Dataset
 mnist.data = mnist.data / 255.0  # Normalization 
 
 
-# In[3]:
+# In[2]:
 
 
-pca = PCA(n_components= 30,copy = False)
+pca = PCA(n_components= 80,copy = False)
 X = pca.fit_transform(mnist.data)
 Y = mnist.target
 x_train, x_test, y_train, y_test = train_test_split(X,Y, test_size= 0.25, random_state=27)
@@ -32,17 +35,17 @@ x_train, x_test, y_train, y_test = train_test_split(X,Y, test_size= 0.25, random
 #Reducing Dimension
 
 
-# In[4]:
+# In[3]:
 
 
-lda = LinearDiscriminantAnalysis(n_components=2)
-lda.fit_transform(X, Y)
-x_train, x_test, y_train, y_test = train_test_split(X,Y, test_size= 0.25, random_state=27)
+#lda = LinearDiscriminantAnalysis(n_components=2)
+#lda.fit_transform(X, Y)
+#x_train, x_test, y_train, y_test = train_test_split(X,Y, test_size= 0.25, random_state=27)
 
 #Reducing Dimension
 
 
-# In[2]:
+# In[4]:
 
 
 #svd = decomposition.TruncatedSVD(n_components= 30, algorithm='arpack')
@@ -61,7 +64,7 @@ Log_clf.fit(x_train, y_train)
 #print('Score:%f'% Log_clf.score(x_test, y_test))
 y_pred = Log_clf.predict(x_test)
 print('Logistic Classifier Accuracy:%f'% accuracy_score(y_test, y_pred))
-
+print('Logistic Classifier Report\n%s' % (classification_report(y_test,y_pred)))
 # Classifier and Training, Evaluating
 
 
@@ -72,7 +75,7 @@ Tree_clf = DecisionTreeClassifier()
 Tree_clf.fit(x_train, y_train)
 y_pred = Tree_clf.predict(x_test)
 print('DecisionTreeClassifier Accuracy:%f'% accuracy_score(y_test, y_pred))
-
+print('DecisionTreeClassifier Report\n%s' % (classification_report(y_test,y_pred)))
 # Classifier and Training, Evaluating
 
 
@@ -83,7 +86,7 @@ svm_clf = svm.SVC()
 svm_clf.fit(x_train, y_train)
 y_pred = svm_clf.predict(x_test)
 print('SVC Accuracy:%f'% accuracy_score(y_test, y_pred))
-
+print('SVC Classifier Report\n%s' % (classification_report(y_test,y_pred)))
 # Classifier and Training, Evaluating
 
 
@@ -95,6 +98,6 @@ mlp_clf = MLPClassifier(hidden_layer_sizes=(100,100,100), max_iter=20, alpha=0.0
 mlp_clf.fit(x_train, y_train)
 y_pred = mlp_clf.predict(x_test)
 print('MLP Classifier Accuracy:%f'% accuracy_score(y_test, y_pred))
-
+print('MLP Classifier Report\n%s' % (classification_report(y_test,y_pred)))
 # Classifier and Training, Evaluating
 
